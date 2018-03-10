@@ -5,6 +5,7 @@
 const chalk = require('chalk');
 const speedTest = require('speedtest-net');
 const figures = require('figures');
+const Table = require('cli-table');
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
 
@@ -30,14 +31,23 @@ st.on('data', data => {
 	const upload = (data.speeds.upload * 125).toFixed(2);
 	const ping = data.server.ping;
 
-	let msg = chalk.green.bold('\nFinal Report:\n');
-	msg += chalk.cyan(`${figures.pointerSmall} Download speed: ${chalk.green(`${download}`)} kB/s\n`);
-	msg += chalk.cyan(`${figures.pointerSmall} Upload speed: ${chalk.green(`${upload}`)} kB/s\n`);
-	msg += chalk.cyan(`${figures.pointerSmall} Latency: ${chalk.green(`${ping}`)} ms`);
+	// Table
+	const table = new Table({
+		head: [`${chalk.red.bold('Type:')}`, `${chalk.red.bold('Speed:')}`],
+		colWidths: [25, 25]
+	});
 
-  console.log(msg);
+table.push(
+    [`${chalk.cyan('Download')}`, `${chalk.green(`${download}`)} kB/s`]
+  , [`${chalk.cyan('Upload')}`, `${chalk.green(`${upload}`)} kB/s`]
+  ,	[`${chalk.cyan('Latency')}`, `${chalk.green(`${ping}`)} ms`]
+);
+
+	// Print the final report table
+	console.log(table.toString());
 });
 
+// Download and Upload speed log
 console.log(chalk.magenta.bold(`${figures.info} Speed test in progress...`));
 st.on('downloadspeedprogress', speed => {
 	const msg = chalk.green(`${figures.arrowDown} Download: ${(speed * 125).toFixed(2)} kB/s`);
@@ -48,6 +58,7 @@ st.on('uploadspeedprogress', speed => {
   console.log(msg);
 });
 
+// Handle the error
 st.on('error', err => {
 	if (err.code === 'ENOTFOUND') {
 console.error(chalk.red.bold(`${figures.cross} Unable to connect to the server. Please check your internet connection and try again!`));
