@@ -7,7 +7,7 @@
 
   </p>
   
-<p align="center"><img src="screenshot.svg" alt="SVG"></p>
+<p align="center"><img src="https://cdn.rawgit.com/xxczaki/speedo-cli/51192e15/speedo.svg" alt="SVG"></p>
 
 ## :floppy_disk: Installation
 
