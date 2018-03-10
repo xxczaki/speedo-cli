@@ -24,6 +24,10 @@ npm i -g speedo-cli
 
 Just type `speedo` to start a speed test! :rocket:
 
+## :wave: Thanks
+
+- [speedtest-net](https://github.com/ddsol/speedtest.net) for providing fast & simple API!
+
 ## :clipboard: License
 
 MIT © [Antoni Kepinski](https://akepinski.me)
