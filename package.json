@@ -1,0 +1,44 @@
+{
+  "name": "speedo-cli",
+  "version": "1.0.1",
+  "description": "Internet speed report in your terminal!",
+  "main": "./cli.js",
+  "bin": {
+    "speedo": "./cli.js"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "keywords": [
+    "speedo-cli",
+    "speedo",
+    "speedtest",
+    "speed",
+    "cli",
+    "internet",
+    "download",
+    "upload",
+    "report",
+    "npm",
+    "nodejs",
+    "akepinski"
+  ],
+  "author": "Antoni Kepinski <hello@akepinski.me> (https://akepinski.me)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxczaki/speedo-cli.git"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "figures": "^2.0.0",
+    "speedtest-net": "^1.4.2",
+    "update-notifier": "^2.3.0"
+  },
+  "devDependencies": {
+    "xo": "*"
+  },
+  "engines": {
+    "node": ">=5.0.0"
+  }
+}
