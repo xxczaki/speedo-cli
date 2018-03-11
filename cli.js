@@ -4,27 +4,26 @@
 
 const chalk = require('chalk');
 const speedTest = require('speedtest-net');
-const figures = require('figures');
-const Table = require('cli-table');
-const updateNotifier = require('update-notifier');
-const pkg = require('./package.json');
+const Table = require('cli-table2');
+const ora = require('ora');
 
 const arg = process.argv[2];
-
-updateNotifier({pkg}).notify();
+const spinner = ora();
 
 // Help message
 if (arg === '-h' || arg === '--help') { // Display help message
   console.log(`
-Usage:
- Just run ${chalk.green.bold('speedo')} to start a speed test!
+ Usage:
+  Just run ${chalk.green.bold('speedo')} to start a speed test!
+
+ Powered by ${chalk.cyan('speedtest.net')}
 
  `);
   process.exit(1);
 }
 
 // Speed test config
-const st = speedTest({maxTime: 5000});
+const st = speedTest({maxTime: 5250});
 
 st.on('data', data => {
 	const download = (data.speeds.download * 125).toFixed(2);
@@ -44,23 +43,23 @@ table.push(
 );
 
 	// Print the final report table
+	spinner.succeed(`Done! Here is your report:\n`);
 	console.log(table.toString());
 });
 
 // Download and Upload speed log
-console.log(chalk.magenta.bold(`${figures.info} Speed test in progress...`));
 st.on('downloadspeedprogress', speed => {
-	const msg = chalk.green(`${figures.arrowDown} Download: ${(speed * 125).toFixed(2)} kB/s`);
-  console.log(msg);
+	spinner.text = `Testing your download speed... ${chalk.green(`${(speed * 125).toFixed(2)} kB/s`)}`;
+    spinner.start();
 });
 st.on('uploadspeedprogress', speed => {
-	const msg = chalk.yellow(`${figures.arrowUp} Upload: ${(speed * 125).toFixed(2)} kB/s`);
-  console.log(msg);
+	spinner.text = `Testing your upload speed... ${chalk.yellow(`${(speed * 125).toFixed(2)} kB/s`)}`;
+	spinner.start();
 });
 
 // Handle the error
 st.on('error', err => {
 	if (err.code === 'ENOTFOUND') {
-console.error(chalk.red.bold(`${figures.cross} Unable to connect to the server. Please check your internet connection and try again!`));
+console.error(chalk.red.bold(`Unable to connect to the server :( Please check your internet connection and try again!`));
 	}
 });
