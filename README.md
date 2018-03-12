@@ -9,7 +9,7 @@
 <a href="https://www.youtube.com/watch?v=9auOCbH5Ns4"><img src="https://img.shields.io/badge/unicorn-approved-ff69b4.svg" alt="Unicorn Approved"></a>
   </p>
   
-<p align="center"><img src="https://cdn.rawgit.com/xxczaki/speedo-cli/51192e15/speedo.svg" alt="SVG"></p>
+<p align="center"><img src="https://cdn.rawgit.com/xxczaki/speedo-cli/6aa1e344/speedo.svg" alt="SVG"></p>
 
 ## :floppy_disk: Installation
 
