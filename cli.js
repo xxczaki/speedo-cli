@@ -11,7 +11,7 @@ const arg = process.argv[2];
 const spinner = ora();
 
 // Help message
-if (arg === '-h' || arg === '--help') { // Display help message
+if (arg === '-h' || arg === '--help') {
   console.log(`
  Usage:
   Just run ${chalk.green.bold('speedo')} to start a speed test!
@@ -26,8 +26,8 @@ if (arg === '-h' || arg === '--help') { // Display help message
 const st = speedTest({maxTime: 5250});
 
 st.on('data', data => {
-	const download = (data.speeds.download * 125).toFixed(2);
-	const upload = (data.speeds.upload * 125).toFixed(2);
+	const download = (data.speeds.download * 0.125).toFixed(2);
+	const upload = (data.speeds.upload * 0.125).toFixed(2);
 	const ping = data.server.ping;
 
 	// Table
@@ -37,8 +37,8 @@ st.on('data', data => {
 	});
 
 table.push(
-    [`${chalk.cyan('Download')}`, `${chalk.green(`${download}`)} kB/s`]
-  , [`${chalk.cyan('Upload')}`, `${chalk.green(`${upload}`)} kB/s`]
+    [`${chalk.cyan('Download')}`, `${chalk.green(`${download}`)} MB/s`]
+  , [`${chalk.cyan('Upload')}`, `${chalk.green(`${upload}`)} MB/s`]
   ,	[`${chalk.cyan('Latency')}`, `${chalk.green(`${ping}`)} ms`]
 );
 
@@ -49,11 +49,11 @@ table.push(
 
 // Download and Upload speed log
 st.on('downloadspeedprogress', speed => {
-	spinner.text = `Testing your download speed... ${chalk.green(`${(speed * 125).toFixed(2)} kB/s`)}`;
+	spinner.text = `Testing your download speed... ${chalk.green(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
     spinner.start();
 });
 st.on('uploadspeedprogress', speed => {
-	spinner.text = `Testing your upload speed... ${chalk.yellow(`${(speed * 125).toFixed(2)} kB/s`)}`;
+	spinner.text = `Testing your upload speed... ${chalk.yellow(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
 	spinner.start();
 });
 
