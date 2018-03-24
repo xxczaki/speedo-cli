@@ -30,7 +30,7 @@
     "url": "https://github.com/xxczaki/speedo-cli.git"
   },
   "dependencies": {
-    "chalk": "^2.3.0",
+    "chalk": "^2.3.2",
     "cli-table2": "^0.2.0",
     "ora": "^2.0.0",
     "speedtest-net": "^1.4.2"
