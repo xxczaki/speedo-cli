@@ -24,7 +24,7 @@ if (arg === '-h' || arg === '--help') {
 
 // Speed test config
 const st = speedTest({maxTime: 5250});
-
+// Output in MB/s
 st.on('data', data => {
 	const download = (data.speeds.download * 0.125).toFixed(2);
 	const upload = (data.speeds.upload * 0.125).toFixed(2);
@@ -43,23 +43,23 @@ table.push(
 );
 
 	// Print the final report table
-	spinner.succeed(`Done! Here is your report:\n`);
+	spinner.succeed(`Done! Here is your speed report:\n`);
 	console.log(table.toString());
 });
 
 // Download and Upload speed log
 st.on('downloadspeedprogress', speed => {
-	spinner.text = `Testing your download speed... ${chalk.green(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
+	spinner.text = `Testing download speed... ${chalk.green(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
     spinner.start();
 });
 st.on('uploadspeedprogress', speed => {
-	spinner.text = `Testing your upload speed... ${chalk.yellow(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
+	spinner.text = `Testing upload speed... ${chalk.yellow(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
 	spinner.start();
 });
 
 // Handle the error
 st.on('error', err => {
 	if (err.code === 'ENOTFOUND') {
-console.error(chalk.red.bold(`Unable to connect to the server :( Please check your internet connection and try again!`));
+console.error(chalk.red.bold(`Unable to connect to the server :(`));
 	}
 });
