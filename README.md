@@ -11,18 +11,13 @@
   
 <p align="center"><img src="https://cdn.rawgit.com/xxczaki/speedo-cli/6aa1e344/speedo.svg" alt="SVG"></p>
 
-## :floppy_disk: Installation
+## :floppy_disk: Usage
 
-``` bash
-npm i -g speedo-cli
-```
+Just run `npx speedo` to start a speed test :unicorn:
+
 <a href="https://www.patreon.com/akepinski">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
-
-## :feet: Usage
-
-Just type `speedo` to start a speed test! :rocket:
 
 ## :wave: Thanks
 
