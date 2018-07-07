@@ -13,7 +13,7 @@
 
 ## :floppy_disk: Usage
 
-Just run `npx speedo` to start a speed test :unicorn:
+Just run `npx speedo-cli` to start a speed test :unicorn:
 
 <a href="https://www.patreon.com/akepinski">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
