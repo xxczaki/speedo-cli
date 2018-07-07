@@ -12,14 +12,14 @@ const spinner = ora();
 
 // Help message
 if (arg === '-h' || arg === '--help') {
-  console.log(`
+	console.log(`
  Usage:
   Just run ${chalk.green.bold('speedo')} to start a speed test!
 
  Powered by ${chalk.cyan('speedtest.net')}
 
  `);
-  process.exit(1);
+	process.exit(1);
 }
 
 // Speed test config
@@ -28,7 +28,6 @@ const st = speedTest({maxTime: 5250});
 st.on('data', data => {
 	const download = (data.speeds.download * 0.125).toFixed(2);
 	const upload = (data.speeds.upload * 0.125).toFixed(2);
-	const ping = data.server.ping;
 
 	// Table
 	const table = new Table({
@@ -36,11 +35,11 @@ st.on('data', data => {
 		colWidths: [25, 25]
 	});
 
-table.push(
-    [`${chalk.cyan('Download')}`, `${chalk.green(`${download}`)} MB/s`]
-  , [`${chalk.cyan('Upload')}`, `${chalk.green(`${upload}`)} MB/s`]
-  ,	[`${chalk.cyan('Latency')}`, `${chalk.green(`${ping}`)} ms`]
-);
+	table.push(
+		[`${chalk.cyan('Download')}`, `${chalk.green(`${download}`)} MB/s`]
+		, [`${chalk.cyan('Upload')}`, `${chalk.green(`${upload}`)} MB/s`]
+		,	[`${chalk.cyan('Latency')}`, `${chalk.green(`${data.server.ping}`)} ms`]
+	);
 
 	// Print the final report table
 	spinner.succeed(`Done! Here is your speed report:\n`);
@@ -50,7 +49,7 @@ table.push(
 // Download and Upload speed log
 st.on('downloadspeedprogress', speed => {
 	spinner.text = `Testing download speed... ${chalk.green(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
-    spinner.start();
+	spinner.start();
 });
 st.on('uploadspeedprogress', speed => {
 	spinner.text = `Testing upload speed... ${chalk.yellow(`${(speed * 0.125).toFixed(2)} MB/s`)}`;
@@ -60,6 +59,6 @@ st.on('uploadspeedprogress', speed => {
 // Handle the error
 st.on('error', err => {
 	if (err.code === 'ENOTFOUND') {
-console.error(chalk.red.bold(`Unable to connect to the server :(`));
+		console.error(chalk.red.bold(`Unable to connect to the server :(`));
 	}
 });
