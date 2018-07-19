@@ -1,13 +1,14 @@
 {
   "name": "speedo-cli",
-  "version": "2.2.1",
+  "version": "2.3.1",
   "description": "Internet speed report in your terminal!",
   "main": "./cli.js",
   "bin": {
     "speedo": "./cli.js"
   },
   "scripts": {
-    "test": "xo"
+    "test": "xo && nyc ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "speedo-cli",
@@ -23,7 +24,7 @@
     "nodejs",
     "akepinski"
   ],
-  "author": "Antoni Kepinski <hello@akepinski.me> (https://akepinski.me)",
+  "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -32,13 +33,17 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "cli-table3": "^0.5.0",
-    "ora": "^2.1.0",
+    "execa": "^0.10.0",
+    "ora": "^3.0.0",
     "speedtest-net": "^1.4.3"
   },
   "devDependencies": {
+    "ava": "*",
+    "coveralls": "*",
+    "nyc": "*",
     "xo": "*"
   },
   "engines": {
-    "node": ">=5.0.0"
+    "node": ">=8.0.0"
   }
 }

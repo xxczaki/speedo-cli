@@ -19,13 +19,13 @@ if (arg === '-h' || arg === '--help') {
  Powered by ${chalk.cyan('speedtest.net')}
 
  `);
-	process.exit(1);
+	process.exit(0);
 }
 
 // Speed test config
 const st = speedTest({maxTime: 5250});
 // Output in MB/s
-st.on('data', data => {
+st.on('data', async data => {
 	const download = (data.speeds.download * 0.125).toFixed(2);
 	const upload = (data.speeds.upload * 0.125).toFixed(2);
 
@@ -35,7 +35,7 @@ st.on('data', data => {
 		colWidths: [25, 25]
 	});
 
-	table.push(
+	await table.push(
 		[`${chalk.cyan('Download')}`, `${chalk.green(`${download}`)} MB/s`]
 		, [`${chalk.cyan('Upload')}`, `${chalk.green(`${upload}`)} MB/s`]
 		,	[`${chalk.cyan('Latency')}`, `${chalk.green(`${data.server.ping}`)} ms`]
@@ -58,6 +58,7 @@ st.on('uploadspeedprogress', speed => {
 
 // Handle the error
 st.on('error', err => {
+	/* istanbul ignore next */
 	if (err.code === 'ENOTFOUND') {
 		console.error(chalk.red.bold(`Unable to connect to the server :(`));
 	}
