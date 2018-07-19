@@ -4,7 +4,7 @@
 
 const chalk = require('chalk');
 const speedTest = require('speedtest-net');
-const Table = require('cli-table2');
+const Table = require('cli-table3');
 const ora = require('ora');
 
 const arg = process.argv[2];
