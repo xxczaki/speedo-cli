@@ -10,7 +10,7 @@
 <a href="https://www.youtube.com/watch?v=9auOCbH5Ns4"><img src="https://img.shields.io/badge/unicorn-approved-ff69b4.svg" alt="Unicorn Approved"></a>
   </p>
   
-<p align="center"><img src="https://cdn.rawgit.com/xxczaki/speedo-cli/12d5bac0/speedo.svg" alt="SVG"></p>
+<p align="center"><img src="https://rawcdn.githack.com/xxczaki/speedo-cli/master/speedo.svg" alt="SVG"></p>
 
 ## :floppy_disk: Usage
 
