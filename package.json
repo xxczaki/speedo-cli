@@ -7,7 +7,9 @@
     "speedo": "./cli.js"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "speedo-cli",
@@ -34,11 +36,13 @@
     "cli-table3": "^0.5.1",
     "meow": "^5.0.0",
     "ora": "^3.2.0",
-    "speedtest-net": "^1.5.1"
+    "speedtest-net": "^1.5.1",
+    "snyk": "^1.230.5"
   },
   "devDependencies": {
     "ava": "*",
     "execa": "*",
     "xo": "*"
-  }
+  },
+  "snyk": true
 }
