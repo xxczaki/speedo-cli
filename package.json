@@ -34,7 +34,7 @@
     "cli-table3": "^0.5.1",
     "meow": "^5.0.0",
     "ora": "^3.2.0",
-    "speedtest-net": "^1.5.1"
+    "speedtest-net": "^2.2.0"
   },
   "devDependencies": {
     "ava": "*",
